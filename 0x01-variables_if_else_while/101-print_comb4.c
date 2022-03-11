@@ -1,5 +1,4 @@
 #include <stdio.h>
-
 /**
  * main - Prints numbers between 012 to 789.
  *
@@ -21,7 +20,7 @@ while (i < 58)
 g = 48;
 while (g < 58)
 {
-if (e != i && e != g && i != g && e< i && i < g)
+if (e != i && e != g && i != g && e < i && i < g)
 {
 putchar(e);
 putchar(i);
