@@ -1,76 +1,73 @@
-#include <stdio.h>
-
-#include <stdlib.h>
-
 #include "main.h"
-
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <stdbool.h>
 
 /**
-
-* main - prints the minimum number of coins to make
-
-* change for an amount of money.
-
-* @argc: the number of passed arguments
-
-* @argv: an array of string of passed arguments.
-
-*
-
-* Return: 0 if argc != 2, else 1
-
+* coinConverter - Helper function that does all the mathematics
+* @i: Passed in variable from main for calculations
+* Return: The number of coins needed minimum for the passed in variable
 */
-
-int main(int argc, char *argv[])
-
+int coinConverter(int i)
 {
+int count = 0;
 
-int num, i, result = 0;
+while (i != 0)
+{
+if (i % 10 == 9 || i % 10 == 7)
+i -= 2;
+else if (i % 25 == 0)
+i -= 25;
+else if (i % 10 == 0)
+i -= 10;
+else if (i % 5 == 0)
+i -= 5;
+else if (i % 2 == 0)
+{
+if (i % 10 == 6)
+i -= 1;
+else
+i -= 2;
+}
+else
+i -= 1;
 
-int coins[] = {25, 10, 5, 2, 1};
+count++;
+}
 
+return (count);
+}
 
+/**
+* main - Takes in exactly one argument for minimum coin count
+* @argc: Number of command line arguments
+* @argv: Array name
+* Return: 0 if exactly 1 argument is passed into this program, 1 otherwise
+*/
+int main(int argc, char *argv[])
+{
+int i, coin;
+
+coin = 0;
 
 if (argc != 2)
-
 {
-
-puts("Error");
-
+printf("Error\n");
 return (1);
-
 }
 
+i = atoi(argv[1]);
 
+if (i < 0)
+printf("0\n");
 
-num = atoi(argv[1]);
-
-
-
-for (i = 0; i < 5; i++)
-
+else
 {
+coin = coinConverter(i);
 
-if (num < 0)
-
-break;
-
-while (num >= coins[i])
-
-{
-
-result++;
-
-num -= coins[i];
-
+printf("%d\n", coin);
 }
-
-}
-
-printf("%d\n", result);
 
 return (0);
-
 }
-
