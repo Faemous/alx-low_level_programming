@@ -1,1 +1,0 @@
-About C-static libraries
